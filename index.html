@@ -13,15 +13,19 @@
       color: #eee;
       padding-left: 0.25em
     }
+    body {
+      background: #999999;
+    }
   </style>
 </head>
-<body>
+<body id="content">
   <h1>Hello <span id="my-name"></span>!</h1>
 
   <form id="get-name" action="#" method="post">
     <label for="user-name">Enter name:</label>
     <input type="text" id="user-name" placeholder="Your name?">
     <input type="submit"><input type="reset" value="Clear">
+    <input type="color" id="colour-picker" value="#999999">
   </form>
 
   <script src="js/localstore.js"></script>

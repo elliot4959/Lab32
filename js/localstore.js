@@ -2,8 +2,10 @@
 
   let myName = document.getElementById("my-name"); 
   let getName = document.getElementById("get-name");
-  let userName = document.getElementById("user-name"); 
+  let userName = document.getElementById("user-name");
+  let colourPicker = document.getElementById("colour-picker");
   let nameStored = localStorage.name;
+  let colourStored = localStorage.colour;
 
   // Displays the name in the console at this stage:
   console.log(`Name on page load: ${nameStored}`);
@@ -11,7 +13,12 @@
   if(nameStored) {
     // If there's a name in localStorage, use it:
     myName.innerHTML = `again ${nameStored}`;
+    // If there's a colour in localStorage, use it:
+    document.body.style.backgroundColor = colourStored;
+
+    // Log the data stored
     console.log(`Name stored is: ${nameStored}`);
+    console.log(`Colour stored is: ${colourStored}`);    
   }
   else {
     // There's no name in localStorage:
@@ -25,17 +32,22 @@
       alert("Please enter a name");
       userName.focus();
     }
-    // Gets the name the user entered:
+
+    // Gets the name and colour the user entered:
     nameStored = userName.value;
+    colourStored = colourPicker.value;
     
-    // Shows the name in "my-name":
+    // Shows the name in "my-name" and sets the colour:
     myName.innerHTML = nameStored;
+    document.body.style.backgroundColor = colourStored;
     
-    // Puts the name into localStorage:
+    // Puts the name and colour into localStorage:
     localStorage.name = nameStored;
+    localStorage.colour = colourStored;
     
-    // Displays the name in the console at the final stage:
+    // Displays the name and colour in the console at the final stage:
     console.log(`New name stored: ${nameStored}`);
+    console.log(`New colour stored: ${colourStored}`);
     
     return false;
   }
@@ -45,16 +57,21 @@
     if (localStorage.name != undefined){
       // Log the data before clearing
       // log from brower's local storage rather than local var
-      console.log(`Data before clear: ${localStorage.name}`);
+      console.log(`Name before clear: ${localStorage.name}`);
+      console.log(`Colour before clear: ${localStorage.colour}`);
 
       // Clear the local data
       localStorage.clear();
 
       // Log the data after clearing
-      console.log(`Data after clear: ${localStorage.name}`);
+      console.log(`Name after clear: ${localStorage.name}`);
+      console.log(`Colour after clear: ${localStorage.colour}`);
 
       // Reset the HTML
       myName.innerHTML = "stranger";
+
+      // Reset the colour
+      document.location.reload();
     }
     // If no name stored, alert the user.
     else {
