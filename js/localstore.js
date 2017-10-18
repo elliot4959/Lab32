@@ -21,6 +21,7 @@
 
   function PerformGreeting() {
     if(userName.value === "") {
+      // Set the value to default
       alert("Please enter a name");
       userName.focus();
     }
@@ -39,6 +40,28 @@
     return false;
   }
 
+  function ClearData() {
+    // Check there is data to clear
+    if (localStorage.name != undefined){
+      // Log the data before clearing
+      // log from brower's local storage rather than local var
+      console.log(`Data before clear: ${localStorage.name}`);
+
+      // Clear the local data
+      localStorage.clear();
+
+      // Log the data after clearing
+      console.log(`Data after clear: ${localStorage.name}`);
+
+      // Reset the HTML
+      myName.innerHTML = "stranger";
+    }
+    // If no name stored, alert the user.
+    else {
+      alert("No named stored!");
+    }
+  }
+
   if (typeof event === "undefined") {
     getName.onsubmit = PerformGreeting; // for Firefox
   }
@@ -46,5 +69,7 @@
     getName.addEventListener("submit", PerformGreeting);
     event.preventDefault();
   }
+  // Add a listener for clearing the data
+  getName.addEventListener("reset", ClearData);
 
 }());
